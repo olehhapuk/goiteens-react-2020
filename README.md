@@ -1,3 +1,12 @@
+## Useful links:
+
+- [React Dev Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+- [Prop-types](https://www.npmjs.com/package/prop-types)
+- [React docs](https://reactjs.org/docs/getting-started.html)
+- [Create React App docs](https://create-react-app.dev/)
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
