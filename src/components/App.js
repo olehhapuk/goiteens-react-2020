@@ -1,6 +1,7 @@
 import React from 'react';
-import Panel from './Panel';
+
+import Layout from './Layout';
 
 export default function App() {
-  return <Panel title="Lesson 3: Events and State"></Panel>;
+  return <Layout title="Lesson 3: Events and State"></Layout>;
 }
