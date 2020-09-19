@@ -1,11 +1,3 @@
-## Help
-
-- button bg #4aa4ce
-- button disabled bg #c0c0c0
-- button disabled text #414141
-
----
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
