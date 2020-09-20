@@ -4,7 +4,7 @@
 - button disabled bg #c0c0c0
 - button disabled text #414141
 
-## Useful link
+## Useful links
 
 - [Extending Styles](https://styled-components.com/docs/basics#extending-styles)
 - [Styling any component](https://styled-components.com/docs/basics#styling-any-component)
