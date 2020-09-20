@@ -1,0 +1,19 @@
+@value color-red from '../variables.module.css';
+
+.quantity {
+  font-weight: 600;
+}
+
+.available {
+  composes: quantity;
+  color: green;
+}
+
+.notAvailable {
+  composes: quantity;
+  color: color-red;
+}
+
+:global(.btn) {
+  color: blue;
+}

@@ -3,6 +3,10 @@ import React from 'react';
 import Panel from './Panel';
 import Product from './Product';
 
+import styles from './App.module.css';
+
+console.log('App.module.css', styles);
+
 export default function App() {
   return (
     <Panel title="Best selling products">

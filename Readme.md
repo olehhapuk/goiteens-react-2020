@@ -4,6 +4,13 @@
 - button disabled bg #c0c0c0
 - button disabled text #414141
 
+## Useful link
+
+- [Extending Styles](https://styled-components.com/docs/basics#extending-styles)
+- [Styling any component](https://styled-components.com/docs/basics#styling-any-component)
+- [Attaching additional props](https://styled-components.com/docs/basics#attaching-additional-props)
+- [Referring to other components](https://styled-components.com/docs/advanced#referring-to-other-components)
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
