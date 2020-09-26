@@ -30,27 +30,6 @@
   margin-right: 10px;
 }
 
-.TaskList-btn {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: #279af1;
-  color: #fff;
-}
-
-.TaskList-btn:hover,
-.TaskList-btn:focus {
-  outline: none;
-  cursor: pointer;
-  background-color: #52aef4;
-}
-
-.TaskList-btn_delete {
-  background-color: #fc7753;
-}
-
-.TaskList-btn_delete:hover,
-.TaskList-btn_delete:focus {
-  background-color: #fc6136;
+.TaskList-completed {
+  text-decoration: line-through;
 }
