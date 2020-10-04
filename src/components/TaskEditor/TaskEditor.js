@@ -2,10 +2,10 @@ import React from 'react';
 
 import styles from './TaskEditor.module.css';
 
-function TaskEditor() {
+function TaskEditor(props) {
   return (
     <div className={styles.container}>
-      <button className="btn" type="button">
+      <button className="btn" type="button" onClick={props.addTask}>
         Add Task
       </button>
     </div>
