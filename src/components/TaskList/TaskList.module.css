@@ -1,4 +1,4 @@
-.TaskList {
+.container {
   padding: 20px 15px;
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
     0 0 0 1px rgba(10, 10, 10, 0.02);
@@ -6,30 +6,30 @@
   list-style: none;
 }
 
-.TaskList-item {
+.item {
   display: flex;
   justify-content: space-between;
   padding: 10px 10px;
 }
 
-.TaskList-item:not(:last-child) {
+.item:not(:last-child) {
   border-bottom: 1px solid #e6e1c5;
 }
 
-.TaskList-text {
+.text {
   padding-right: 18px;
   font-size: 18px;
 }
 
-.TaskList-actions {
+.actions {
   display: flex;
   align-items: center;
 }
 
-.TaskList-actions > *:not(:last-child) {
+.actions > *:not(:last-child) {
   margin-right: 10px;
 }
 
-.TaskList-completed {
+.completed {
   text-decoration: line-through;
 }

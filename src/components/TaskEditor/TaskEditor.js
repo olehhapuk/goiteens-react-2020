@@ -1,13 +1,15 @@
 import React from 'react';
 
-import './TaskEditor.css';
+import styles from './TaskEditor.module.css';
 
-export default function TaskEditor({ onAddTask }) {
+function TaskEditor() {
   return (
-    <div className="TaskEditor">
-      <button type="button" className="btn" onClick={onAddTask}>
+    <div className={styles.container}>
+      <button className="btn" type="button">
         Add Task
       </button>
     </div>
   );
 }
+
+export default TaskEditor;
