@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import createTask from '../utils/createTask';
+import { v4 } from 'uuid';
 
 import Layout from './Layout/Layout';
 import TaskEditor from './TaskEditor/TaskEditor';
@@ -9,10 +8,15 @@ import TaskList from './TaskList/TaskList';
 export default class App extends Component {
   state = {
     tasks: [],
+    filter: '',
   };
 
-  handleAddTask = () => {
-    const newTask = createTask();
+  handleAddTask = (text) => {
+    const newTask = {
+      id: v4(),
+      text: text,
+      completed: false,
+    };
 
     this.setState((prevState) => {
       return {
@@ -35,11 +39,36 @@ export default class App extends Component {
     });
   };
 
+  handleFilterChange = (e) => {
+    this.setState({
+      filter: e.target.value,
+    });
+  };
+
   render() {
+    const filteredTasks = this.state.tasks.filter((task) => {
+      return task.text.toLowerCase().includes(this.state.filter.toLowerCase());
+    });
+
     return (
       <Layout title="Todo App">
         <TaskEditor addTask={this.handleAddTask} />
-        <TaskList tasks={this.state.tasks} removeTask={this.handleRemoveTask} />
+
+        {this.state.tasks.length > 1 && (
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-input"
+              placeholder="Search"
+              value={this.state.filter}
+              onChange={this.handleFilterChange}
+            />
+          </div>
+        )}
+
+        {filteredTasks.length > 0 && (
+          <TaskList tasks={filteredTasks} removeTask={this.handleRemoveTask} />
+        )}
       </Layout>
     );
   }
