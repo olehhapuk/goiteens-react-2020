@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 
+import ErrorBoundary from './components/ErrorBoundary';
 import App from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>,
+  document.getElementById('root')
+);
