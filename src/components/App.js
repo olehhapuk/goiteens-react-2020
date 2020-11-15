@@ -11,6 +11,24 @@ export default class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const tasks = this.state.tasks;
+
+    if (prevState.tasks !== tasks) {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+  }
+
+  componentDidMount() {
+    const tasks = localStorage.getItem('tasks');
+
+    if (tasks) {
+      this.setState({
+        tasks: JSON.parse(tasks),
+      });
+    }
+  }
+
   handleAddTask = (text) => {
     const newTask = {
       id: v4(),
