@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import ImageGalleryItem from './ImageGalleryItem';
 
-function ImageGallery({ images }) {
+function ImageGallery({ images, onOpenModal }) {
   return (
     <ul className="ImageGallery">
       {images.map((image) => (
@@ -10,6 +10,7 @@ function ImageGallery({ images }) {
           key={image.id}
           imageUrl={image.webformatURL}
           largeImgUrl={image.largeImageURL}
+          onOpenModal={onOpenModal}
         />
       ))}
     </ul>
