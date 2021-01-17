@@ -1,6 +1,8 @@
-import HomeView from './views/HomeView';
-import AllMoviesView from './views/AllMoviesView';
-import MovieDetailsView from './views/MovieDetailsView';
+// import HomeView from './views/HomeView';
+// import AllMoviesView from './views/AllMoviesView';
+// import MovieDetailsView from './views/MovieDetailsView';
+
+import { lazy } from 'react';
 
 export const urls = {
   home: '/',
@@ -11,16 +13,24 @@ export const routes = [
   {
     exact: true,
     path: urls.home,
-    component: HomeView,
+    component: lazy(() =>
+      import('./views/HomeView' /* webpackChunkName: 'HomeView' */)
+    ),
   },
   {
     exact: true,
     path: urls.allMovies,
-    component: AllMoviesView,
+    component: lazy(() =>
+      import('./views/AllMoviesView' /* webpackChunkName: 'AllMoviesView' */)
+    ),
   },
   {
-    exact: true,
+    exact: false,
     path: `${urls.allMovies}/:movieId`,
-    component: MovieDetailsView,
+    component: lazy(() =>
+      import(
+        './views/MovieDetailsView' /* webpackChunkName: 'MovieDetailsView' */
+      )
+    ),
   },
 ];
