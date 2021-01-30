@@ -6,5 +6,100 @@
 
 html {
   font-family: sans-serif;
-  color: #000000;
+}
+
+body {
+  margin: 0;
+}
+
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #279af1;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  outline: none;
+  background-color: #3085f3;
+}
+
+.btn.delete {
+  background-color: #ee4250;
+}
+
+.btn.delete:hover,
+.btn.delete:focus {
+  background-color: #e23a3a;
+}
+
+.btn:disabled {
+  background-color: #c5c5c5;
+  cursor: unset;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  margin-right: 3px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+  margin-top: 8px;
+}
+
+fieldset.form-group {
+  border: 1px solid #c5c5c5;
+  border-radius: 0.3rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 7px;
+}
+
+.form-error {
+  display: block;
+  margin-top: 3px;
+  color: #ff521b;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  border: 0.1rem solid #c5c5c5;
+  border-radius: 0.3rem;
+}
+
+.form-input:focus {
+  outline: 0;
+  border-color: #5764c6;
+}
+
+.form-input.error,
+.form-input.error:focus {
+  border-color: #ff521b;
+}
+
+.form-select {
+  padding: 0.5rem 0.7rem;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  border: 0.1rem solid #c5c5c5;
+  border-radius: 0.3rem;
+}
+
+.form-select:focus {
+  outline: 0;
+  border-color: #5764c6;
 }
