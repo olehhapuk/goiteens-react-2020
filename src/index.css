@@ -6,5 +6,23 @@
 
 html {
   font-family: sans-serif;
-  color: #000000;
+  color: var(--color-text);
+}
+
+html.light {
+  --color-main: #3182ce;
+  --color-label: #ffffff;
+  --color-text: #000000;
+  --color-secondary: #e9e9e9;
+}
+
+html.dark {
+  --color-main: #90cdf4;
+  --color-label: #1a202c;
+  --color-text: #ffffff;
+  --color-secondary: #28333d;
+}
+
+body {
+  background-color: var(--color-label);
 }
