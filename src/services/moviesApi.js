@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = 'https://api.themoviedb.org/3';
-const apiKey = ''; // <--- Ваш api ключ сюди
+const apiKey = 'd19b59b3b6c574219e918a0f3144198f'; // <--- Ваш api ключ сюди
 
 export function fetchTrendingMovies() {
   return axios.get(`${baseUrl}/trending/movie/day?api_key=${apiKey}`);
