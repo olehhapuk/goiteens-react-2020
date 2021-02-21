@@ -14,24 +14,33 @@ export default class MoviesPage extends Component {
     error: null,
   };
 
+  componentDidMount() {
+    const { query } = queryString.parse(this.props.location.search);
+    if (query) {
+      this.handleFetchMovies(query);
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const prevSearch = prevProps.location.search;
     const newSearch = this.props.location.search;
 
     if (prevSearch !== newSearch) {
       const { query } = queryString.parse(newSearch);
-
-      this.setState({ loading: true });
-      fetchMoviesByQuery(query)
-        .then((res) => this.setState({ movies: res.data.results }))
-        .catch((error) => this.setState({ error }))
-        .finally(() => this.setState({ loading: false }));
+      this.handleFetchMovies(query);
     }
   }
 
-  handleSearch = (query) => {
-    console.log('Searchbar submitted with query: ' + query);
+  handleFetchMovies = (query) => {
+    this.setState({ loading: true });
 
+    fetchMoviesByQuery(query)
+      .then((res) => this.setState({ movies: res.data.results }))
+      .catch((error) => this.setState({ error }))
+      .finally(() => this.setState({ loading: false }));
+  };
+
+  handleSearch = (query) => {
     this.props.history.push({
       ...this.props.location,
       search: `?query=${query}`,

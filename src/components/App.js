@@ -1,12 +1,21 @@
-import { Route, Switch } from 'react-router-dom';
 import { Suspense } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import { routes } from '../router';
+
+import { AuthContext } from '../AuthContext';
+
+import Navbar from './Navbar/Navbar';
 
 function App() {
   return (
     <div>
-      <h1>App</h1>
+      <Navbar />
+
+      <AuthContext.Consumer>
+        {(auth) => <p>{JSON.stringify(auth)}</p>}
+      </AuthContext.Consumer>
+
       <Suspense fallback={<h1>Loading...</h1>}>
         <Switch>
           {routes.map((route) => (

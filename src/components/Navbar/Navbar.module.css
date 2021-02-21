@@ -1,0 +1,23 @@
+/* #7284A8 */
+/* #34113F */
+
+.navbar {
+  padding: 10px;
+  border-bottom: 1px solid #1b1b1b;
+  margin-bottom: 15px;
+}
+
+.navbarLink {
+  text-decoration: none;
+  color: #7284a8;
+}
+
+.navbarLink:hover,
+.navbarLink_active {
+  color: #34113f;
+  text-decoration: underline;
+}
+
+.navbarLink:not(:last-child) {
+  margin-right: 12px;
+}

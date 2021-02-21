@@ -15,6 +15,10 @@ export function fetchMovieDetails(movieId) {
   return axios.get(`${baseUrl}/movie/${movieId}?api_key=${apiKey}`);
 }
 
+export function fetchMovieCast(movieId) {
+  return axios.get(`${baseUrl}/movie/${movieId}/credits?api_key=${apiKey}`);
+}
+
 // fetchMovieDetails вертає об'єкт в якому буде backdrop_path, це кусок посилання на фото
 // Щоб зібрати повне посилання потрібно притримуватись такого формату:
 // `https://image.tmdb.org/t/p/original/${backdrop_path}`
