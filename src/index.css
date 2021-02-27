@@ -103,3 +103,18 @@ fieldset.form-group {
   outline: 0;
   border-color: #5764c6;
 }
+
+.fade-in-enter,
+.fade-in-exit-active {
+  opacity: 0;
+}
+
+.fade-in-enter-active,
+.fade-in-exit {
+  opacity: 1;
+}
+
+.fade-in-enter-active,
+.fade-in-exit-active {
+  transition: opacity 250ms;
+}
