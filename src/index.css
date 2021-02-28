@@ -104,6 +104,22 @@ fieldset.form-group {
   border-color: #5764c6;
 }
 
+.box {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff521b;
+}
+
+.box > span {
+  color: #fff;
+  font-size: 24px;
+}
+
+/* Animations */
+
 .fade-in-enter,
 .fade-in-exit-active {
   opacity: 0;

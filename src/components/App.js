@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import createTask from '../utils/createTask';
 
@@ -42,9 +43,14 @@ export default class App extends Component {
       <Layout title="Todo App">
         <TaskEditor addTask={this.handleAddTask} />
 
-        {tasks.length > 0 && (
+        <CSSTransition
+          in={tasks.length > 0}
+          classNames="fade"
+          timeout={300}
+          unmountOnExit
+        >
           <TaskList tasks={tasks} removeTask={this.handleRemoveTask} />
-        )}
+        </CSSTransition>
       </Layout>
     );
   }

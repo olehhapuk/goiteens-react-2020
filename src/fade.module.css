@@ -1,0 +1,10 @@
+.enter,
+.appear {
+  opacity: 0;
+}
+
+.enterActive,
+.appearActive {
+  opacity: 1;
+  transition: opacity 300ms;
+}
