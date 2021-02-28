@@ -4,6 +4,7 @@
     0 0 0 1px rgba(10, 10, 10, 0.02);
   border-radius: 4px;
   list-style: none;
+  overflow: hidden;
 }
 
 .item {
