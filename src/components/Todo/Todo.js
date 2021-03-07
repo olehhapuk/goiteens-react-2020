@@ -6,10 +6,12 @@ import createTask from '../../utils/createTask';
 import Layout from '../Layout/Layout';
 import TaskEditor from '../TaskEditor/TaskEditor';
 import TaskList from '../TaskList/TaskList';
+import Filter from '../Filter/Filter';
 
 export default class Todo extends Component {
   state = {
     tasks: [],
+    filter: '',
   };
 
   handleAddTask = (text) => {
@@ -36,8 +38,18 @@ export default class Todo extends Component {
     });
   };
 
+  handleFilterChange = (e) => {
+    this.setState({
+      filter: e.target.value,
+    });
+  };
+
   render() {
-    const { tasks } = this.state;
+    const { tasks, filter } = this.state;
+
+    const filteredTasks = tasks.filter((task) =>
+      task.text.toLowerCase().includes(filter.toLowerCase())
+    );
 
     return (
       <Layout title="Todo App">
@@ -46,12 +58,22 @@ export default class Todo extends Component {
         </CSSTransition>
 
         <CSSTransition
-          in={tasks.length > 0}
+          in={tasks.length > 2}
+          appear
           classNames="fade"
           timeout={250}
           unmountOnExit
         >
-          <TaskList tasks={tasks} removeTask={this.handleRemoveTask} />
+          <Filter filter={filter} onFilterChange={this.handleFilterChange} />
+        </CSSTransition>
+
+        <CSSTransition
+          in={filteredTasks.length > 0}
+          classNames="fade"
+          timeout={250}
+          unmountOnExit
+        >
+          <TaskList tasks={filteredTasks} removeTask={this.handleRemoveTask} />
         </CSSTransition>
       </Layout>
     );
