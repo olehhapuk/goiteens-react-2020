@@ -12,8 +12,8 @@ export default class Todo extends Component {
     tasks: [],
   };
 
-  handleAddTask = () => {
-    const newTask = createTask();
+  handleAddTask = (text) => {
+    const newTask = createTask(text);
 
     this.setState((prevState) => {
       return {

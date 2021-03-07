@@ -1,21 +1,29 @@
 import { connect } from 'react-redux';
 
-import { timerIncrementAction } from '../redux/store';
+import timerActions from '../redux/timer/timerActions';
 
-function Timer({ increment }) {
+function Timer({ increment, value }) {
   return (
     <div>
       <button type="button" onClick={increment}>
         Increment
       </button>
+      <input type="number" />
+      <p>{value}</p>
     </div>
   );
 }
 
-function mapDispatchToProps(dispatch) {
+const mapStateToProps = (state) => {
   return {
-    increment: () => dispatch(timerIncrementAction),
+    value: state.timer,
   };
-}
+};
 
-export default connect(null, mapDispatchToProps)(Timer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increment: () => dispatch(timerActions.increment(5)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);

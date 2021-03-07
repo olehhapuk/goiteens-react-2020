@@ -8,9 +8,9 @@ html {
   font-family: sans-serif;
 }
 
-body {
+/* body {
   margin: 0;
-}
+} */
 
 .btn {
   padding: 12px 20px;
@@ -88,6 +88,10 @@ fieldset.form-group {
 .form-input.error,
 .form-input.error:focus {
   border-color: #ff521b;
+}
+
+textarea.form-input {
+  font-family: inherit;
 }
 
 .form-select {

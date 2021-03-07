@@ -1,20 +1,12 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-// Actions
-export const timerIncrementAction = {
-  type: 'TIMER_INCREMENT',
-};
+import tasksReducer from './tasks/tasksReducer';
+import filterReducer from './filter/filterReducer';
 
-// Reducers
-function rootReducer(state = 0, action) {
-  switch (action.type) {
-    case 'TIMER_INCREMENT':
-      return state + 1;
-
-    default:
-      return state;
-  }
-}
+const rootReducer = combineReducers({
+  tasks: tasksReducer,
+  filter: filterReducer,
+});
 
 const store = createStore(
   rootReducer,
