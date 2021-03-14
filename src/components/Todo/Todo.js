@@ -1,81 +1,59 @@
 import { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
-import createTask from '../../utils/createTask';
+// import createTask from '../../utils/createTask';
 
 import Layout from '../Layout/Layout';
 import TaskEditor from '../TaskEditor/TaskEditor';
 import TaskList from '../TaskList/TaskList';
 import Filter from '../Filter/Filter';
 
-export default class Todo extends Component {
-  state = {
-    tasks: [],
-    filter: '',
-  };
-
-  handleAddTask = (text) => {
-    const newTask = createTask(text);
-
-    this.setState((prevState) => {
-      return {
-        tasks: [...prevState.tasks, newTask],
-      };
-    });
-  };
-
-  handleRemoveTask = (id) => {
-    this.setState((prevState) => {
-      return {
-        tasks: prevState.tasks.filter((task) => {
-          if (task.id === id) {
-            return false;
-          } else {
-            return true;
-          }
-        }),
-      };
-    });
-  };
-
-  handleFilterChange = (e) => {
-    this.setState({
-      filter: e.target.value,
-    });
-  };
-
+class Todo extends Component {
   render() {
-    const { tasks, filter } = this.state;
+    const { tasks } = this.props;
 
-    const filteredTasks = tasks.filter((task) =>
-      task.text.toLowerCase().includes(filter.toLowerCase())
-    );
+    // const filteredTasks = tasks.filter((task) =>
+    //   task.text.toLowerCase().includes(filter.toLowerCase())
+    // );
 
     return (
       <Layout title="Todo App">
         <CSSTransition in appear classNames="fade" timeout={250} unmountOnExit>
-          <TaskEditor addTask={this.handleAddTask} />
+          <TaskEditor />
         </CSSTransition>
 
         <CSSTransition
-          in={tasks.length > 2}
+          in={true}
           appear
           classNames="fade"
           timeout={250}
           unmountOnExit
         >
-          <Filter filter={filter} onFilterChange={this.handleFilterChange} />
+          <Filter />
         </CSSTransition>
 
         <CSSTransition
-          in={filteredTasks.length > 0}
+          in={tasks.length > 0}
           classNames="fade"
           timeout={250}
           unmountOnExit
         >
-          <TaskList tasks={filteredTasks} removeTask={this.handleRemoveTask} />
+          <TaskList tasks={tasks} />
         </CSSTransition>
       </Layout>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const filteredTasks = state.tasks.filter((task) =>
+    task.text.toLowerCase().includes(state.filter.toLowerCase())
+  );
+
+  return {
+    tasks: filteredTasks,
+  };
+};
+
+export default connect(mapStateToProps)(Todo);

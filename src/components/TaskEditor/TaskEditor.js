@@ -1,5 +1,8 @@
 import { Component } from 'react';
 import { v4 } from 'uuid';
+import { connect } from 'react-redux';
+
+import * as tasksActions from '../../redux/tasks/tasksActions';
 
 import styles from './TaskEditor.module.css';
 
@@ -34,7 +37,7 @@ class TaskEditor extends Component {
     return (
       <form className={styles.container} onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label className="form-label" for={this.formIds.text}>
+          <label className="form-label" htmlFor={this.formIds.text}>
             Task text
           </label>
           <textarea
@@ -53,4 +56,14 @@ class TaskEditor extends Component {
   }
 }
 
-export default TaskEditor;
+const mapDispatchToProps = {
+  addTask: tasksActions.add,
+};
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     addTask: (text) => dispatch(tasksActions.add(text)),
+//   };
+// };
+
+export default connect(null, mapDispatchToProps)(TaskEditor);

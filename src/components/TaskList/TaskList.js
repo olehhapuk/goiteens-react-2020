@@ -1,5 +1,8 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { connect } from 'react-redux';
+
+import * as tasksActions from '../../redux/tasks/tasksActions';
 
 import styles from './TaskList.module.css';
 
@@ -27,4 +30,8 @@ function TaskList({ tasks, removeTask }) {
   );
 }
 
-export default TaskList;
+const mapDispatchToProps = {
+  removeTask: tasksActions.remove,
+};
+
+export default connect(null, mapDispatchToProps)(TaskList);

@@ -6,7 +6,7 @@ const tasksReducer = (state = [], action) => {
       return [...state, action.payload];
 
     case actionTypes.remove:
-      return state.tasks.filter((task) => {
+      return state.filter((task) => {
         return !(task.id === action.payload);
       });
 
