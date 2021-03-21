@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import * as filterActions from '../../redux/filter/filterActions';
+import * as tasksActions from '../../redux/tasks/tasksActions';
 
 function Filter({ filter, onFilterChange }) {
   return (
@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  onFilterChange: (e) => filterActions.change(e.target.value),
+  onFilterChange: (e) => tasksActions.change(e.target.value),
 };
 
 // const mapDispatchToProps = (dispatch) => {

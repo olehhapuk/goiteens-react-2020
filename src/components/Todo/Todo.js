@@ -47,8 +47,8 @@ class Todo extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const filteredTasks = state.tasks.filter((task) =>
-    task.text.toLowerCase().includes(state.filter.toLowerCase())
+  const filteredTasks = state.tasks.items.filter((task) =>
+    task.text.toLowerCase().includes(state.tasks.filter.toLowerCase())
   );
 
   return {

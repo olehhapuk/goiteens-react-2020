@@ -1,13 +1,11 @@
-// import Todo from './Todo/Todo';
-// import Timer from './Timer';
-import Switcher from './Switcher';
+import Todo from './Todo/Todo';
+// import Switcher from './Switcher';
 
 function App() {
   return (
     <div>
-      {/* <Todo /> */}
-      {/* <Timer /> */}
-      <Switcher />
+      <Todo />
+      {/* <Switcher /> */}
     </div>
   );
 }

@@ -1,21 +1,13 @@
 import { v4 } from 'uuid';
+import { createAction } from '@reduxjs/toolkit';
 
-import * as actionTypes from './tasksActionTypes';
+export const add = createAction('tasks/addItem', (text) => ({
+  payload: {
+    id: v4(),
+    text,
+  },
+}));
 
-export const add = (text) => {
-  return {
-    type: actionTypes.add,
-    payload: {
-      id: v4(),
-      text,
-      completed: false,
-    },
-  };
-};
+export const remove = createAction('tasks/removeItem');
 
-export const remove = (taskId) => {
-  return {
-    type: actionTypes.remove,
-    payload: taskId,
-  };
-};
+export const change = createAction('tasks/changeFilter');

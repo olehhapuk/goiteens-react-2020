@@ -1,18 +1,22 @@
-import * as actionTypes from './tasksActionTypes';
+import { createReducer } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 
-const tasksReducer = (state = [], action) => {
-  switch (action.type) {
-    case actionTypes.add:
-      return [...state, action.payload];
+import * as tasksActions from './tasksActions';
 
-    case actionTypes.remove:
-      return state.filter((task) => {
-        return !(task.id === action.payload);
-      });
+const tasksReducer = createReducer([], {
+  [tasksActions.add]: (state, action) => [...state, action.payload],
+  [tasksActions.remove]: (state, action) => {
+    return state.filter((task) => {
+      return task.id !== action.payload;
+    });
+  },
+});
 
-    default:
-      return state;
-  }
-};
+const filterReducer = createReducer('', {
+  [tasksActions.change]: (state, action) => action.payload,
+});
 
-export default tasksReducer;
+export default combineReducers({
+  items: tasksReducer,
+  filter: filterReducer,
+});
