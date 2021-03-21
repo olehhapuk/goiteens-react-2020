@@ -10,6 +10,7 @@ const tasksReducer = createReducer([], {
       return task.id !== action.payload;
     });
   },
+  [tasksActions.fetchTasksEnd]: (state, action) => action.payload,
 });
 
 const filterReducer = createReducer('', {

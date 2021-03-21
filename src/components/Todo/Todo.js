@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 
-// import createTask from '../../utils/createTask';
+import * as tasksOperations from '../../redux/tasks/tasksOperations';
 
 import Layout from '../Layout/Layout';
 import TaskEditor from '../TaskEditor/TaskEditor';
@@ -10,12 +10,12 @@ import TaskList from '../TaskList/TaskList';
 import Filter from '../Filter/Filter';
 
 class Todo extends Component {
+  componentDidMount() {
+    this.props.fetchTasks();
+  }
+
   render() {
     const { tasks } = this.props;
-
-    // const filteredTasks = tasks.filter((task) =>
-    //   task.text.toLowerCase().includes(filter.toLowerCase())
-    // );
 
     return (
       <Layout title="Todo App">
@@ -56,4 +56,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Todo);
+const mapDispatchToProps = {
+  fetchTasks: tasksOperations.fetchAllTasks,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);
