@@ -15,13 +15,15 @@ class Todo extends Component {
   }
 
   render() {
-    const { tasks } = this.props;
+    const { tasks, tasksLoading } = this.props;
 
     return (
       <Layout title="Todo App">
         <CSSTransition in appear classNames="fade" timeout={250} unmountOnExit>
           <TaskEditor />
         </CSSTransition>
+
+        {tasksLoading && <h1>Loading...</h1>}
 
         <CSSTransition
           in={true}
@@ -53,11 +55,12 @@ const mapStateToProps = (state) => {
 
   return {
     tasks: filteredTasks,
+    tasksLoading: state.tasks.loading,
   };
 };
 
 const mapDispatchToProps = {
-  fetchTasks: tasksOperations.fetchAllTasks,
+  fetchTasks: tasksOperations.fetchTasks,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);

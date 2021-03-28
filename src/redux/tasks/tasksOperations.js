@@ -2,20 +2,29 @@ import axios from 'axios';
 
 import * as tasksActions from './tasksActions';
 
-const baseUrl = 'http://localhost:5000';
+export const fetchTasks = () => (dispatch) => {
+  dispatch(tasksActions.fetchTasksRequest());
 
-export const fetchAllTasks = () => (dispatch) => {
   axios
-    .get(`${baseUrl}/tasks`)
-    .then((res) => dispatch(tasksActions.fetchTasksEnd(res.data)));
+    .get('/tasks')
+    .then((res) => dispatch(tasksActions.fetchTasksSuccess(res.data)))
+    .catch((error) => dispatch(tasksActions.fetchTasksError(error.message)));
 };
 
 export const addTask = (text) => (dispatch) => {
-  const newTask = {
-    text,
-  };
+  dispatch(tasksActions.addTaskRequest());
 
   axios
-    .post(`${baseUrl}/tasks`, newTask)
-    .then((res) => dispatch(tasksActions.add(res.data)));
+    .post('/tasks', { text })
+    .then((res) => dispatch(tasksActions.addTaskSuccess(res.data)))
+    .catch((error) => dispatch(tasksActions.addTaskError(error.message)));
+};
+
+export const removeTask = (taskId) => (dispatch) => {
+  dispatch(tasksActions.removeTaskRequest());
+
+  axios
+    .delete(`/tasks/${taskId}`)
+    .then(() => dispatch(tasksActions.removeTaskSuccess(taskId)))
+    .catch((error) => dispatch(tasksActions.removeTaskError(error.message)));
 };

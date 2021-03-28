@@ -60,10 +60,4 @@ const mapDispatchToProps = {
   addTask: tasksOperations.addTask,
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addTask: (text) => dispatch(tasksActions.add(text)),
-//   };
-// };
-
 export default connect(null, mapDispatchToProps)(TaskEditor);
