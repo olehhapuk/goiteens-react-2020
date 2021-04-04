@@ -6,13 +6,7 @@ function MovieList({ movies }) {
   return (
     <Grid>
       {movies.map((movie) => (
-        <Grid.Column
-          key={movie.id}
-          widescreen={2}
-          computer={4}
-          tablet={4}
-          mobile={16}
-        >
+        <Grid.Column key={movie.id} computer={4} tablet={4} mobile={16}>
           <MovieListItem
             id={movie.id}
             title={movie.title}
