@@ -1,23 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Suspense } from 'react';
+import { Container } from 'semantic-ui-react';
 
-import styles from './Layout.module.css';
+import Navbar from '../Navbar';
+import Spinner from '../Spinner';
 
-function Layout(props) {
+function Layout({ children }) {
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>{props.title}</h2>
-      {props.children}
-    </div>
+    <Container>
+      <Navbar />
+
+      <Suspense fallback={<Spinner loading />}>{children}</Suspense>
+    </Container>
   );
 }
-
-Layout.defaultProps = {
-  title: 'No title',
-};
-
-Layout.propTypes = {
-  title: PropTypes.string,
-};
 
 export default Layout;
