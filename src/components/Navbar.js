@@ -1,9 +1,6 @@
 import { AppBar, Toolbar, Typography, Box, Button } from '@material-ui/core';
-import { connect } from 'react-redux';
 
 import { urls } from '../routes';
-import * as authSelectors from '../redux/auth/authSelectors';
-import * as authOperations from '../redux/auth/authOperations';
 
 import NavLink from './NavLink';
 
@@ -15,16 +12,9 @@ function Navbar({ isAuthenticated, logout, user }) {
           <Box mr="auto">
             <Typography variant="button" component="div">
               <NavLink to={urls.home}>Home</NavLink>
-
-              {isAuthenticated && (
-                <NavLink to={urls.contacts}>Contacts</NavLink>
-              )}
-
-              {!isAuthenticated && (
-                <NavLink to={urls.register}>Register</NavLink>
-              )}
-
-              {!isAuthenticated && <NavLink to={urls.login}>Login</NavLink>}
+              <NavLink to={urls.contacts}>Contacts</NavLink>
+              <NavLink to={urls.register}>Register</NavLink>
+              <NavLink to={urls.login}>Login</NavLink>
             </Typography>
           </Box>
 
@@ -46,13 +36,4 @@ function Navbar({ isAuthenticated, logout, user }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: authSelectors.isAuthenticated(state),
-  user: authSelectors.getUser(state),
-});
-
-const mapDispatchToProps = {
-  logout: authOperations.logout,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default Navbar;

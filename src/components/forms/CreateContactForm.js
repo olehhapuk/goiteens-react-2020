@@ -6,6 +6,7 @@ import * as contactsOperations from '../../redux/contacts/contactsOperations';
 import * as contactsSelectors from '../../redux/contacts/contactsSelectors';
 
 import Spinner from '../Spinner';
+import Message from '../Message';
 
 const initialState = {
   name: '',
@@ -72,13 +73,7 @@ class CreateContactForm extends Component {
           />
         </div>
 
-        {error && (
-          <Box my={2}>
-            <Typography variant="h4" component="h4" color="red">
-              Error
-            </Typography>
-          </Box>
-        )}
+        {error && <Message>Error</Message>}
 
         <Button
           type="submit"

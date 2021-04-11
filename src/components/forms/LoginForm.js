@@ -1,9 +1,5 @@
 import { Component } from 'react';
 import { TextField, Button, Box, Typography } from '@material-ui/core';
-import { connect } from 'react-redux';
-
-import * as authOperations from '../../redux/auth/authOperations';
-import * as authSelectors from '../../redux/auth/authSelectors';
 
 import Spinner from '../Spinner';
 
@@ -37,7 +33,6 @@ class LoginForm extends Component {
 
   render() {
     const { email, password } = this.state;
-    const { loading, error } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -72,35 +67,13 @@ class LoginForm extends Component {
           />
         </div>
 
-        {error && (
-          <Box my={2}>
-            <Typography variant="h4" component="h4" color="red">
-              Error
-            </Typography>
-          </Box>
-        )}
-
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          disabled={loading}
-        >
+        <Button type="submit" variant="contained" color="primary">
           Login
-          <Spinner loading={loading} />
+          {/* <Spinner loading={loading} /> */}
         </Button>
       </form>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  loading: authSelectors.getLoading(state),
-  error: authSelectors.getError(state),
-});
-
-const mapDispatchToProps = {
-  login: authOperations.login,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default LoginForm;
