@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Box, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 import * as authOperations from '../../redux/auth/authOperations';
@@ -37,7 +37,7 @@ class LoginForm extends Component {
 
   render() {
     const { email, password } = this.state;
-    const { loading } = this.props;
+    const { loading, error } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -46,6 +46,7 @@ class LoginForm extends Component {
             variant="outlined"
             margin="normal"
             fullWidth
+            autoComplete="off"
             label="E-Mail"
             type="email"
             name="email"
@@ -60,6 +61,7 @@ class LoginForm extends Component {
             variant="outlined"
             margin="normal"
             fullWidth
+            autoComplete="off"
             label="Password"
             type="password"
             name="password"
@@ -69,6 +71,14 @@ class LoginForm extends Component {
             onChange={this.handleChange}
           />
         </div>
+
+        {error && (
+          <Box my={2}>
+            <Typography variant="h4" component="h4" color="red">
+              Error
+            </Typography>
+          </Box>
+        )}
 
         <Button
           type="submit"
@@ -86,6 +96,7 @@ class LoginForm extends Component {
 
 const mapStateToProps = (state) => ({
   loading: authSelectors.getLoading(state),
+  error: authSelectors.getError(state),
 });
 
 const mapDispatchToProps = {

@@ -45,7 +45,7 @@ class ContactsList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  contacts: contactsSelectors.getContacts(state),
+  contacts: contactsSelectors.getFilteredContacts(state),
   loading: contactsSelectors.getLoading(state),
 });
 

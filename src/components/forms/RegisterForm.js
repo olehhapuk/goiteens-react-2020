@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Box, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 import * as authSelectors from '../../redux/auth/authSelectors';
@@ -38,7 +38,7 @@ class RegisterForm extends Component {
 
   render() {
     const { name, email, password } = this.state;
-    const { loading } = this.props;
+    const { loading, error } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -85,6 +85,14 @@ class RegisterForm extends Component {
           />
         </div>
 
+        {error && (
+          <Box my={2}>
+            <Typography variant="h4" component="h4" color="red">
+              Error
+            </Typography>
+          </Box>
+        )}
+
         <Button
           type="submit"
           variant="contained"
@@ -101,6 +109,7 @@ class RegisterForm extends Component {
 
 const mapStateToProps = (state) => ({
   loading: authSelectors.getLoading(state),
+  error: authSelectors.getError(state),
 });
 
 const mapDispatchToProps = {

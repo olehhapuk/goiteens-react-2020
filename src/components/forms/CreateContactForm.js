@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Box, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 import * as contactsOperations from '../../redux/contacts/contactsOperations';
@@ -37,7 +37,7 @@ class CreateContactForm extends Component {
 
   render() {
     const { name, number } = this.state;
-    const { loading } = this.props;
+    const { loading, error } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -47,6 +47,7 @@ class CreateContactForm extends Component {
             margin="normal"
             fullWidth
             label="Name"
+            autoComplete="off"
             type="text"
             name="name"
             placeholder="Name"
@@ -60,6 +61,7 @@ class CreateContactForm extends Component {
             variant="outlined"
             margin="normal"
             fullWidth
+            autoComplete="off"
             label="Number"
             type="tel"
             name="number"
@@ -69,6 +71,14 @@ class CreateContactForm extends Component {
             onChange={this.handleChange}
           />
         </div>
+
+        {error && (
+          <Box my={2}>
+            <Typography variant="h4" component="h4" color="red">
+              Error
+            </Typography>
+          </Box>
+        )}
 
         <Button
           type="submit"
@@ -86,6 +96,7 @@ class CreateContactForm extends Component {
 
 const mapStateToProps = (state) => ({
   loading: contactsSelectors.getLoading(state),
+  error: contactsSelectors.getError(state),
 });
 
 const mapDispatchToProps = {
