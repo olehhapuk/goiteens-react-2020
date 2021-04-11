@@ -2,29 +2,30 @@ import { lazy } from 'react';
 
 export const urls = {
   home: '/',
-  movies: '/movies',
-  notFound: '/404',
+  register: '/register',
+  login: '/login',
+  contacts: '/contacts',
 };
 
+function createRoute(
+  path,
+  lazyFunc,
+  isPrivate = false,
+  isRestricted = false,
+  exact = true
+) {
+  return {
+    path,
+    exact,
+    component: lazy(lazyFunc),
+    private: isPrivate,
+    restricted: isRestricted,
+  };
+}
+
 export const routes = [
-  {
-    path: urls.notFound,
-    exact: true,
-    component: lazy(() => import('./pages/NotFoundPage')),
-  },
-  {
-    path: urls.home,
-    exact: true,
-    component: lazy(() => import('./pages/HomePage')),
-  },
-  {
-    path: urls.movies,
-    exact: true,
-    component: lazy(() => import('./pages/MoviesPage')),
-  },
-  {
-    path: urls.movies + '/:movieId',
-    exact: true,
-    component: lazy(() => import('./pages/MovieDetailsPage')),
-  },
+  createRoute(urls.home, () => import('./views/HomeView'), false, false),
+  createRoute(urls.contacts, () => import('./views/ContactsView'), true, false),
+  createRoute(urls.register, () => import('./views/RegisterView'), false, true),
+  createRoute(urls.login, () => import('./views/LoginView'), false, true),
 ];
