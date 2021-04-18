@@ -9,7 +9,7 @@ function Spinner({ page = false, loading }) {
         </Backdrop>
       )}
 
-      {!page && loading && <CircularProgress />}
+      {!page && loading && <CircularProgress style={{ color: '#fff' }} />}
     </>
   );
 }

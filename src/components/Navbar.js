@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { urls } from '../routes';
 
 import * as authSelectors from '../redux/auth/authSelectors';
+import * as authOperations from '../redux/auth/authOperations';
 
 import NavLink from './NavLink';
+import Spinner from './Spinner';
 
 // const links = [
 //   {
@@ -18,7 +20,7 @@ import NavLink from './NavLink';
 //   },
 // ];
 
-function Navbar({ isAuthenticated, logout, user }) {
+function Navbar({ isAuthenticated, logout, user, isLoading }) {
   return (
     <div>
       <AppBar position="fixed">
@@ -43,13 +45,15 @@ function Navbar({ isAuthenticated, logout, user }) {
           {isAuthenticated && (
             <Box>
               <Typography variant="body1" component="span">
-                Logged in as User
+                Logged in as {user.name}
               </Typography>
               <Button variant="text" color="inherit" onClick={logout}>
                 Logout
               </Button>
             </Box>
           )}
+
+          <Spinner loading={isLoading} />
         </Toolbar>
       </AppBar>
 
@@ -60,6 +64,12 @@ function Navbar({ isAuthenticated, logout, user }) {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: authSelectors.isAuthenticated(state),
+  user: authSelectors.getUser(state),
+  isLoading: authSelectors.getLoading(state),
 });
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = {
+  logout: authOperations.logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
