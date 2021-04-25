@@ -5,13 +5,15 @@ import Counter from './Counter';
 import Poster from './Poster';
 import Modal from './Modal';
 import Contacts from './Contacts';
+import RegisterForm from './RegisterForm';
 
 function App() {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <Container>
-      <Counter />
+      <RegisterForm />
+      {/* <Counter /> */}
       {/* <Poster /> */}
       {/* <Contacts /> */}
 
