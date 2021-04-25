@@ -1,32 +1,16 @@
-import { connect } from 'react-redux';
-import { TextField, Box, Typography } from '@material-ui/core';
+import { InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons';
 
-import * as contactsActions from '../redux/contacts/contactsActions';
-import * as contactsSelectors from '../redux/contacts/contactsSelectors';
-
-function Filter({ filter, changeFilter }) {
+function Filter({ value, onChange }) {
   return (
-    <Box my={2}>
-      <TextField
-        variant="outlined"
-        fullWidth
-        autoComplete="off"
-        placeholder="Filter"
-        label="Filter"
-        type="search"
-        value={filter}
-        onChange={changeFilter}
-      />
-    </Box>
+    <InputGroup mt="5">
+      <InputLeftElement color="gray.300">
+        <SearchIcon />
+      </InputLeftElement>
+
+      <Input value={value} onChange={onChange} placeholder="Filter contacts" />
+    </InputGroup>
   );
 }
 
-const mapStateToProps = (state) => ({
-  filter: contactsSelectors.getFilter(state),
-});
-
-const mapDispatchToProps = {
-  changeFilter: (e) => contactsActions.changeFilter(e.target.value),
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default Filter;

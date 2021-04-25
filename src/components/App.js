@@ -1,43 +1,27 @@
-import { Component, Suspense } from 'react';
-import { Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Container, Button } from '@chakra-ui/react';
+import { useState } from 'react';
 
-import { routes } from '../routes';
-import * as authOperations from '../redux/auth/authOperations';
+import Counter from './Counter';
+import Poster from './Poster';
+import Modal from './Modal';
+import Contacts from './Contacts';
 
-import Navbar from './Navbar';
-import Spinner from './Spinner';
-import PrivateRoute from './routing/PrivateRoute';
-import PublicRoute from './routing/PublicRoute';
+function App() {
+  const [modalVisible, setModalVisible] = useState(false);
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchUserData();
-  }
+  return (
+    <Container>
+      <Counter />
+      {/* <Poster /> */}
+      {/* <Contacts /> */}
 
-  render() {
-    return (
-      <div>
-        <Navbar />
+      {/* <Button type="button" onClick={() => setModalVisible(true)}>
+        Show Modal
+      </Button>
 
-        <Suspense fallback={<Spinner page loading />}>
-          <Switch>
-            {routes.map((route) =>
-              route.private ? (
-                <PrivateRoute key={route.path} {...route} />
-              ) : (
-                <PublicRoute key={route.path} {...route} />
-              )
-            )}
-          </Switch>
-        </Suspense>
-      </div>
-    );
-  }
+      {modalVisible && <Modal closeModal={() => setModalVisible(false)} />} */}
+    </Container>
+  );
 }
 
-const mapDispatchToProps = {
-  fetchUserData: authOperations.fetchUserData,
-};
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;
