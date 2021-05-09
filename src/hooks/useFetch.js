@@ -20,6 +20,7 @@ const [users, usersLoading, usersError, fetch] = useFetch(
   {
     url: 'url.com',
     method: 'get',
+    // If needed
     data: {},
     headers: {},
     // Query params
