@@ -1,27 +1,22 @@
-import { Container, Button } from '@chakra-ui/react';
-import { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { Container } from '@chakra-ui/react';
 
-import Counter from './Counter';
-import Poster from './Poster';
-import Modal from './Modal';
-import Contacts from './Contacts';
-import RegisterForm from './RegisterForm';
+import { routes } from '../routes';
+
+import Navbar from './Navbar';
 
 function App() {
-  const [modalVisible, setModalVisible] = useState(false);
-
   return (
     <Container>
-      <RegisterForm />
-      {/* <Counter /> */}
-      {/* <Poster /> */}
-      {/* <Contacts /> */}
+      <Navbar />
 
-      {/* <Button type="button" onClick={() => setModalVisible(true)}>
-        Show Modal
-      </Button>
-
-      {modalVisible && <Modal closeModal={() => setModalVisible(false)} />} */}
+      <Switch>
+        {routes.map(({ component: Component, ...route }) => (
+          <Route key={route.path} {...route}>
+            <Component />
+          </Route>
+        ))}
+      </Switch>
     </Container>
   );
 }

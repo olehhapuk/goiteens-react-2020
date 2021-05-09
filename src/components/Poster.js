@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Stack, Box, Heading, Text } from '@chakra-ui/react';
+import { Stack, Box, Heading, Text, Link } from '@chakra-ui/react';
+import { Link as RLink } from 'react-router-dom';
 import axios from 'axios';
 
 function Poster() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -16,31 +16,12 @@ function Poster() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Async Await
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       setLoading(true);
-
-  //       const res = await axios.get(
-  //         'https://jsonplaceholder.typicode.com/posts'
-  //       );
-
-  //       setPosts(res.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   })();
-  // }, []);
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-  }, [images]);
+  }, [posts]);
 
   return (
     <Stack spacing="3">
@@ -48,6 +29,9 @@ function Poster() {
         <Box key={post.id}>
           <Heading>{post.title}</Heading>
           <Text>{post.body}</Text>
+          <Link as={RLink} to={`/posts/${post.id}`}>
+            View
+          </Link>
         </Box>
       ))}
     </Stack>

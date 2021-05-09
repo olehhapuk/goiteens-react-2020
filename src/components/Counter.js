@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Heading, Button, Text, Stack, Input } from '@chakra-ui/react';
+
+import { useCounter } from '../hooks/useCounter';
 
 // this.state = {
 //   counter: 5,
@@ -10,8 +12,7 @@ import { Heading, Button, Text, Stack, Input } from '@chakra-ui/react';
 // }));
 
 function Counter() {
-  const [counter, setCounter] = useState(5);
-  const [step, setStep] = useState(1);
+  const [counter, increment, decrement] = useCounter(0);
 
   useEffect(() => {
     console.log('Render');
@@ -24,22 +25,6 @@ function Counter() {
   useEffect(() => {
     console.log('Counter updating');
   }, [counter]);
-
-  useEffect(() => {
-    console.log('Step updating');
-  }, [step]);
-
-  function increment() {
-    setCounter((prevCounter) => prevCounter + step);
-  }
-
-  function decrement() {
-    setCounter((prevCounter) => prevCounter - step);
-  }
-
-  function handleStepChange(e) {
-    setStep(e.target.valueAsNumber);
-  }
 
   return (
     <div>
@@ -55,13 +40,13 @@ function Counter() {
         </Button>
       </Stack>
 
-      <Input
+      {/* <Input
         type="number"
         placeholder="Step"
         mt="3"
         value={step}
         onChange={handleStepChange}
-      />
+      /> */}
     </div>
   );
 }
