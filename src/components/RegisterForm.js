@@ -1,96 +1,83 @@
-import { useEffect, useState } from 'react';
-import {
-  Input,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Button,
-} from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required(),
+  name: Yup.string().min(3).max(255).required(),
   password: Yup.string().min(6).max(255).required(),
-  imageUrl: Yup.string().url().required(),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref('password')],
+    "Passwords doesn't match"
+  ),
 });
 
 function RegisterForm({ onSubmit }) {
-  const [value, setValue] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       email: '',
+      name: '',
       password: '',
-      imageUrl: '',
+      confirmPassword: '',
     },
-    onSubmit,
+    onSubmit: ({ email, name, password }) => {
+      onSubmit({
+        email,
+        name,
+        password,
+      });
+    },
     validationSchema,
-    // validateOnChange: false,
-    // validateOnBlur: true,
   });
-
-  useEffect(() => {
-    formik.setValues({
-      ...formik.values,
-      email: '1234@mail.com',
-    });
-  }, []);
-
-  useEffect(() => {
-    setValue(true);
-    console.log(value);
-  }, []);
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <FormControl>
-        <FormLabel>Email</FormLabel>
-        <Input
+      <fieldset>
+        <label>Email</label>
+        <input
           type="email"
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
         />
-        {formik.errors.email && (
-          <FormHelperText color="red.300">{formik.errors.email}</FormHelperText>
-        )}
-      </FormControl>
-      <FormControl>
-        <FormLabel>Password</FormLabel>
-        <Input
+        {formik.errors.email && <pre>{formik.errors.email}</pre>}
+      </fieldset>
+
+      <fieldset>
+        <label>Name</label>
+        <input
+          type="text"
+          name="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+        />
+        {formik.errors.name && <pre>{formik.errors.name}</pre>}
+      </fieldset>
+
+      <fieldset>
+        <label>Password</label>
+        <input
           type="password"
           name="password"
           value={formik.values.password}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
         />
-        {formik.errors.password && (
-          <FormHelperText color="red.300">
-            {formik.errors.password}
-          </FormHelperText>
-        )}
-      </FormControl>
-      <FormControl>
-        <FormLabel>Image</FormLabel>
-        <Input
-          type="url"
-          name="imageUrl"
-          value={formik.values.imageUrl}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
-        {formik.errors.imageUrl && (
-          <FormHelperText color="red.300">
-            {formik.errors.imageUrl}
-          </FormHelperText>
-        )}
-      </FormControl>
+        {formik.errors.password && <pre>{formik.errors.password}</pre>}
+      </fieldset>
 
-      <Button type="submit" colorScheme="twitter" mt="3">
-        Submit
-      </Button>
+      <fieldset>
+        <label>Confirm Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+        />
+        {formik.errors.confirmPassword && (
+          <pre>{formik.errors.confirmPassword}</pre>
+        )}
+      </fieldset>
+
+      <button type="submit">Submit</button>
     </form>
   );
 }

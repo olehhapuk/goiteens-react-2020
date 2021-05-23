@@ -1,5 +1,5 @@
 import Counter from './components/CounterRedux';
-import RegisterForm from './components/RegisterForm';
+import RegisterPage from './components/RegisterPage';
 import Poster from './components/Poster';
 import PostDetails from './components/PostDetails';
 import Contacts from './components/Contacts';
@@ -24,7 +24,7 @@ export const routes = [
   {
     path: '/register',
     exact: true,
-    component: RegisterForm,
+    component: RegisterPage,
   },
   {
     path: '/contacts',
