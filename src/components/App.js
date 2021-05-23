@@ -10,6 +10,8 @@ function App() {
     <Container>
       <Navbar />
 
+      {/* <Dropdown icon={} items={[]} iconClass="" dropdownClass="" /> */}
+
       <Switch>
         {routes.map(({ component: Component, ...route }) => (
           <Route key={route.path} {...route}>

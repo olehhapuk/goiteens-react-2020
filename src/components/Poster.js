@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function Poster() {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);

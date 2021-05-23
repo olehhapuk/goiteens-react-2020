@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Heading, Button, Text, Stack, Input } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { Heading, Button, Text, Stack } from '@chakra-ui/react';
 
 import { useCounter } from '../hooks/useCounter';
 

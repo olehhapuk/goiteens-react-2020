@@ -16,6 +16,9 @@ function Navbar() {
       <Link as={RRDLink} to="/contacts">
         Contacts
       </Link>
+      <Link as={RRDLink} to="/settings">
+        Settings
+      </Link>
     </Stack>
   );
 }

@@ -1,0 +1,18 @@
+html.blue {
+  --color-accent: #5f00d8;
+  --color-secondary: #2ebf91;
+}
+
+html.purple {
+  --color-accent: #833ab4;
+  --color-secondary: #fcb045;
+}
+
+html.orange {
+  --color-accent: #fe676c;
+  --color-secondary: #a4ffc9;
+}
+
+body {
+  font-family: inherit !important;
+}

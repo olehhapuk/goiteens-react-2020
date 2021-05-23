@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Input,
   FormControl,
@@ -16,6 +16,8 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterForm({ onSubmit }) {
+  const [value, setValue] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -24,6 +26,8 @@ function RegisterForm({ onSubmit }) {
     },
     onSubmit,
     validationSchema,
+    // validateOnChange: false,
+    // validateOnBlur: true,
   });
 
   useEffect(() => {
@@ -31,6 +35,11 @@ function RegisterForm({ onSubmit }) {
       ...formik.values,
       email: '1234@mail.com',
     });
+  }, []);
+
+  useEffect(() => {
+    setValue(true);
+    console.log(value);
   }, []);
 
   return (
@@ -42,6 +51,7 @@ function RegisterForm({ onSubmit }) {
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
         {formik.errors.email && (
           <FormHelperText color="red.300">{formik.errors.email}</FormHelperText>
@@ -54,6 +64,7 @@ function RegisterForm({ onSubmit }) {
           name="password"
           value={formik.values.password}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
         {formik.errors.password && (
           <FormHelperText color="red.300">
@@ -68,6 +79,7 @@ function RegisterForm({ onSubmit }) {
           name="imageUrl"
           value={formik.values.imageUrl}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
         {formik.errors.imageUrl && (
           <FormHelperText color="red.300">

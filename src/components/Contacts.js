@@ -1,10 +1,10 @@
-import { useReducer, useState } from 'react';
-import { Heading, Stack, Box, Text, IconButton, Flex } from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { useReducer, useState, useCallback, useMemo, useEffect } from 'react';
+import { Heading, Stack } from '@chakra-ui/react';
 import { v4 as uuid } from 'uuid';
 
 import ContactsForm from './ContactsForm';
 import Filter from './Filter';
+import ContactsItem from './ContactsItem';
 
 const initialState = [];
 
@@ -30,6 +30,21 @@ function Contacts() {
   const [contacts, dispatch] = useReducer(contactsReducer, initialState);
   const [filter, setFilter] = useState('');
 
+  const handleDelete = useCallback((id) => {
+    dispatch({
+      type: 'delete',
+      payload: id,
+    });
+  }, []);
+
+  const value = useMemo(() => {
+    return filter + '1';
+  }, [filter]);
+
+  useEffect(() => {
+    console.log('filter + 1', value);
+  }, [value]);
+
   return (
     <div>
       <Heading mb="1">Contacts</Heading>
@@ -45,27 +60,9 @@ function Contacts() {
 
       <Filter value={filter} onChange={setFilter} />
 
-      <Stack>
+      <Stack mt="3">
         {contacts.map((contact) => (
-          <Box key={contact.id} bgColor="gray.100" borderRadius="5px" p="12px">
-            <Flex justifyContent="space-between">
-              <Box>
-                <Heading size="md">{contact.name}</Heading>
-                <Text>{contact.number}</Text>
-              </Box>
-              <IconButton
-                icon={<DeleteIcon />}
-                bgColor="red.300"
-                color="white"
-                onClick={() =>
-                  dispatch({
-                    type: 'delete',
-                    payload: contact.id,
-                  })
-                }
-              />
-            </Flex>
-          </Box>
+          <ContactsItem key={contact.id} {...contact} onDelete={handleDelete} />
         ))}
       </Stack>
     </div>
